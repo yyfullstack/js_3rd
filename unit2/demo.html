@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function sayHi() {
+        alert('Hi!');
+    }
+    //sayHi();
+
+    //解析嵌入式代码的规则，当浏览器遇到字符串"<\/script>"时，就会认为那是结束的
+    //“<\/script>”标签， 解决方法是：'<\/script>'
+
+    function sayScript() {
+        alert('<\/script>');
+    }
+    sayScript();
+
+</script>
+</body>
+</html>
