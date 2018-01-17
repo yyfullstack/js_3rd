@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>typeof</title>
+</head>
+<body>
+<script>
+    var a = 'I am String',
+        b = 222,
+        c = [1, 2, 3],
+        d = new Date(),
+        e = function () {
+            alert('I am function');
+        },
+        f = function () {
+            this.name = 'obj';
+        },
+        g = /^test$/,
+        h = undefined,
+        i = false,
+        j = null;
+    var arr = [a, b, c, d, e, f, g, h, i, j];
+    var arr2 = [String,
+        Number,
+        Array,
+        Date,
+        Function,
+        Function,
+        RegExp,
+        undefined,
+        Boolean,
+        Object];
+
+    //最常见的判断方法：typeof
+    function type() {
+        arr.forEach(function (value) {
+            console.log(value, typeof value);
+        });
+    }
+
+    //type();
+
+    //判断已知对象类型的方法： instanceof
+    //instanceof 后面一定要是对象类型，并且大小写不能错，该方法适合一些条件选择或分支
+    function instance() {
+        arr.forEach(function (value, index) {
+            if (typeof value === 'object' || typeof value === 'function') {
+                console.log(index, value instanceof arr2[index]);
+            } else {
+                console.log(value, typeof value);
+            }
+        });
+    }
+
+    // instance();
+
+    function construct() {
+        arr.forEach(function (value) {
+            if (value == null) {
+                console.log(typeof value);
+            } else {
+                console.log(value.constructor);
+            }
+        });
+    }
+
+    construct();
+
+
+    //通用但很繁琐的方法
+    function prototype() {
+        arr.forEach(function (value) {
+            console.log(Object.prototype.toString.call(value));
+        });
+    }
+
+    //prototype();
+</script>
+</body>
+</html>

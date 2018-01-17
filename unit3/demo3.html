@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>undefined & null</title>
+</head>
+<body>
+<script>
+    //undefined
+
+    //var message;
+    //alert(message);
+
+    /* // var age, 没有声明会报错
+     alert(age);*/
+
+    //对未初始化的变量进行typeof 操作符会返回undefined值
+    //而对未声明的变量执行typeof 同样返回undefined值。
+    //alert(typeof messge);
+    //alert(typeof age);
+
+    //null
+    //var car = null;
+    //alert(typeof car); //object
+
+    //undefined值是派生自null值的，
+    //alert(null == undefined); //true
+
+    var message = 'hello world'
+    //可以对任何数据类型的值调用Boolean() 函数，
+    //而且总会返回一个Boolean值。
+    var bMessage = Boolean(message);
+    console.log(bMessage);
+
+    if(message) {
+        alert('Value is true');
+    }
+
+
+
+
+</script>
+</body>
+</html>

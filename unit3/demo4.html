@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Number类型</title>
+</head>
+<body>
+<script>
+    //十进制
+    var intNum = 55;
+
+    //8进制字面量在严格模式下是无效的
+    var octalNum1 = 070; //56,
+    var octalNum2 = 079; //79
+    var octalNum3 = 08; //8
+    console.log(octalNum1, octalNum2, octalNum3);
+
+    //十六进制字面量
+    var hexNum1 = 0xA;
+    var hexNum2 = 0x1f;
+    console.log(hexNum1, hexNum2);
+
+    //浮点数值
+    var floatNum1 = 1.1;
+    var floatNum2 = 0.1;
+    var floatNum3 = .1; //不推荐
+
+    console.log(floatNum1, floatNum2, floatNum3);
+
+    //isFinite()函数，这个函数在参数位于最小与最大数值之间时会返回true
+    var result = Number.MAX_VALUE + Number.MAX_VALUE;
+    console.log(isFinite(result));//false
+
+    console.log(isNaN(NaN)); //true
+    console.log(isNaN(10)); //false
+    console.log(isNaN("10")); //false
+    console.log(isNaN('blue')); //true
+    console.log(isNaN('true')); //true
+    console.log(isNaN('false')); //true
+    console.log(isNaN(false)); //false
+    console.log(isNaN(true)); //false
+
+    var num1 = parseInt('1234blue');//1234
+    var num2 = parseInt(''); //NaN
+    var num3 = parseInt('0xA'); //10
+    var num4 = parseInt(22.5); //22
+    //ECMAScript3，"070"被当做八进制字面量，因此转换后是十进制的56
+    //ECMAScript5中，parseInt，已经不具有解析八进制的能力，因此前导的零会被认为无效。结果得到70
+    var num5 = parseInt("070"); //70
+    var num6 = parseInt(70); //70
+    var num7 = parseInt("0xF"); //15
+    console.log(num1, num2, num3, num4, num5, num6, num7);
+
+    //转换时使用的基数（即多少进制）。如果指定基数16，
+    var num1 = parseInt('AF', 16); //175
+    //未设置基数，发现第一个字符不是数字字符，就自动终止，返回NaN，
+    var num2 = parseInt('AF'); //NaN
+    console.log(num1, num2);
+
+    var num1 = parseFloat('1234blue');//1234
+    var num2 = parseFloat('0xA'); //0
+    var num3 = parseFloat('22.5'); //22.5
+    var num4 = parseFloat('22.34.5'); //22.34
+    var num5 = parseFloat("0908.5"); //908.5
+    var num6 = parseFloat('3.125e7'); //31250000
+    console.log(num1, num2, num3, num4, num5, num6);
+</script>
+</body>
+</html>
