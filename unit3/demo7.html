@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加，减, 位运算</title>
+</head>
+<body>
+<script>
+    // var s1 = '2';
+    // var s2 = 'z';
+    // var b = false;
+    // var f = 1.1;
+    // var o = {
+    //     valueOf: function () {
+    //         return -1;
+    //     }
+    // };
+    //
+    //值类型改变
+    // console.log(s1++, s2++, b++, f--, o--);
+    //原数据类型也发生了改变
+    // console.log(s1, s2, b, f, o);
+
+
+    // var s1 = '01';
+    // var s2 = '1.1';
+    // var s3 = 'z';
+    // var b = false;
+    // var f = 1.1;
+    // var o = {
+    //     valueOf: function () {
+    //         return -1;
+    //     }
+    // };
+    //
+    // //类型发生了改变
+    // console.log(+s1, +s2, +s3, +b, +f, +o);
+    // //原数据类型不变
+    // console.log(s1, s2, s3, b, f, o);
+
+
+    var s1 = '01';
+    var s2 = '1.1';
+    var s3 = 'z';
+    var b = false;
+    var f = 1.1;
+    var o = {
+        valueOf: function () {
+            return -1;
+        }
+    };
+
+    //类型发生了改变
+    console.log(-s1, -s2, -s3, -b, -f, -o);
+    //原数据类型不变
+    console.log(s1, s2, s3, b, f, o);
+
+
+    var num = -18;
+    console.log(num.toString(2)); //-10010
+
+    var num1 = 25;
+    var num2 = ~num1;
+    console.log(num2); //-26
+
+    console.log(25 & 3);//1
+    console.log(25 | 3);//27
+    console.log(25 ^ 3);//26
+
+    var oldValue = 2;
+    var newValue = oldValue << 5;
+    console.log(oldValue, newValue); //2, 64
+
+
+    var value1 = -2;
+    var value2 = value1 << 5;
+    console.log(value1, value2); //-2, -64
+
+
+    //应用场景
+
+    //判断奇偶数
+    function isEven(n) {
+        if (n & 1 === 0) {
+            //偶数
+        } else {
+            //奇数
+        }
+    }
+
+    //取整方法不适用超过32位整数最大值2147483647的数
+    //所有的位运算都只对整数有效
+    function toInt32(val) {
+        return val | 0;
+    }
+
+    function getInt(val) {
+        return val >> 0
+    }
+
+    //类似Number 函数的效果
+    function myParseInt(val) {
+        return ~~val;
+    }
+
+
+    console.log(getInt(-2.6));
+    console.log(getInt(2147483649.6));
+    console.log(myParseInt('123'));
+
+
+    function rgb2Hex(a, b, c) {
+        return '#' + ((256 + a << 8 | b) << 8 | c).toString(16).slice(1);
+    }
+
+    function toHexString(r, g, b) {
+        return '#' + ('0000' + (r << 16 | g << 8 | b).toString(16)).slice(-6);
+    }
+
+    var rgb2hex = function(r, g, b) {
+        return '#' + ((1 << 24) + (r << 16) + (g << 8) + b)
+            .toString(16) // 先转成十六进制，然后返回字符串
+            .substr(1);   // 去除字符串的最高位，返回后面六个字符串
+    }
+
+
+    console.log(toHexString(255, 180, 234)); //ffb4ea
+    console.log(rgb2Hex(255, 180, 234)); //ffb4ea
+
+    var a = 10, b = 99;
+    a ^= b;
+    b ^= a;
+    a ^= b;
+    console.log(a, b); //99, 10
+</script>
+</body>
+</html>

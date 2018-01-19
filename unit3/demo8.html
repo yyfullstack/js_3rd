@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逻辑运算</title>
+</head>
+<body>
+<script>
+    console.log(!false, !'blue', !0, !NaN, !'', !12345);
+    console.log(!!false, !!'blue', !!0, !!NaN, !!'', !!12345);
+
+
+    // var found = true;
+    // var result = (found && undefinedVariable); //undefinedVariable is not defined
+    // console.log(result);
+
+
+    // var found = false;
+    // var result = (found && undefinedVariable); //不报错，没有执行逻辑与后面的代码
+    // console.log(result); //false
+
+
+    // var found = true;
+    // var result = (found || undefinedVariable); //不报错，没有执行逻辑或后面的代码
+    // console.log(result); //true
+
+
+    // var found = false;
+    // var result = (found || undefinedVariable); //undefinedVariable is not defined
+    // console.log(result);
+
+    //可以利用逻辑或的这一行为来避免为变量赋值null或undefined值。
+    // var myObject = preferredObject || backupObject;
+
+
+
+    var obj1 = {};
+    var result1 = obj1 && 123;
+    console.log(result1);
+
+    var result2 = obj1 || 123;
+    console.log(result2);
+
+</script>
+</body>
+</html>
