@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object类型</title>
+</head>
+<body>
+<script>
+    //第一种使用new操作符后跟Object构造函数
+    var person = new Object();
+    person.name = 'jack';
+    person.age = 28;
+
+    //对象字面量
+    var person = {
+        name: 'jack',
+        age: 28
+    }
+
+    //属性名可以使用字符串，
+    //数值属性会自动转换为字符串
+    var person = {
+        'name': 'jack',
+        'age': 28,
+        5: true
+    }
+
+    var person = {}; // 与 new Object 相同
+    person.name = 'jack';
+    person.age = 28;
+
+    //对象字面量也是向函数传递大量可选参数的首选方式
+    function displayInfo(args) {
+        var output = '';
+        if (typeof args.name == 'string') {
+            output += 'Name: ' + args.name + '\n';
+        }
+        if (typeof args.age == 'number') {
+            output += 'Age: ' + args.age + '\n';
+        }
+        console.log(output);
+    }
+
+    displayInfo({
+        name:'lucy',
+        age:21
+    });
+
+    displayInfo({
+        name: 'Greg'
+    });
+
+</script>
+</body>
+</html>

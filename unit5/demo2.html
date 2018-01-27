@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array类型</title>
+</head>
+<body>
+<script>
+    //Array构造函数
+    // var colors = new Array();
+    //
+    // //初始数量
+    // var colors = new Array(20);
+    //
+    // //初始化
+    // var colors = new Array('red', 'blue', 'grren');
+    //
+    // //可以省略new 操作符
+    // var colors = Array(3);
+    //
+    // var names = Array('Grep');
+
+    //字面量
+
+    var colors = ['red', 'blue', 'green'];
+    console.log(colors.length);
+
+    //数组的length属性——它不是只读的。因此，通过设置这个属性，可以从数组的末尾移除项或向数组中添加新项。
+    console.log(colors[2])
+    colors.length = 2;
+    console.log(colors[2])
+
+    var colors = ['red', 'blue', 'green'];
+    colors.length = 4;
+    console.log(colors[3])
+    console.log(colors.length);
+
+    var colors = ['red', 'blue', 'green'];
+    colors[colors.length] = 'black';
+    colors[colors.length] = 'brown';
+    console.log(colors.length);
+    console.log(colors);
+
+    var colors = ['red', 'blue', 'green'];
+    colors[99] = 'black';
+    console.log(colors.length);
+    console.log(colors);
+
+    //检测数组
+    console.log(typeof colors); //object
+    console.log(colors instanceof Array); //true
+    console.log(Array.isArray(colors)); //true
+
+    //转换
+    var colors = ['red', 'blue', 'green'];
+    console.log(colors.toString());
+    console.log(colors.toLocaleString());
+    console.log(colors.valueOf());
+
+    var person1 = {
+        toLocaleString: function () {
+            return 'nik';
+        },
+
+        toString: function () {
+            return 'Nikolas';
+        }
+    }
+
+    var person2 = {
+        toLocaleString: function () {
+            return 'Greg';
+        },
+
+        toString: function () {
+            return 'Grigorios';
+        }
+    }
+
+    var people = [person1, person2];
+    console.log(people);
+    console.log(people.toString());
+    console.log(people.toLocaleString());
+
+
+    //join
+    var colors = ['red', 'blue', 'green'];
+    console.log(colors.join(','));
+    console.log(colors.join('|'));
+    console.log(colors.toString());
+
+    //栈
+    var colors = new Array()
+    //返回修改后数组的长度
+    var count = colors.push('red', 'green');
+    console.log(count);
+
+    count = colors.push('black');
+    console.log(count);
+    //移除最后一项，返回移除的项
+    var item = colors.pop();
+    console.log(item);
+
+    console.log(colors.length);
+
+
+    //队列
+    var colors = new Array()
+    //返回修改后数组的长度
+    var count = colors.push('red', 'green');
+    console.log(count);
+
+    count = colors.push('black');
+    console.log(count);
+    //移除第一项，返回移除的项
+    var item = colors.shift();
+    console.log(item);
+
+    //在数组的前端添加项，并返回数组的长度
+    count = colors.unshift('blue');
+    console.log(count);
+    console.log(colors);
+
+    console.log(colors.length);
+
+    //反转数组项的顺序
+    var values = [1, 2, 3, 4, 5];
+    values.reverse();
+    console.log(values)
+
+    /**
+     * 比较函数接收两个参数，
+     * 如果第一个参数应该位于第二个之前则返回一个负数
+     * 如果两个参数相等则返回0
+     * 如果第一个参数应该位于第二个之后则返回一个正数
+     * @param value1
+     * @param value2
+     * @returns {number}
+     */
+    function compare(value1, value2) {
+        if (value1 < value2) {
+            return 1;
+        }
+        else if (value1 > value2) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    var values = [0, 5, 1, 10, 15];
+    values.sort(compare);
+    console.log(values);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本类型和引用类型</title>
+</head>
+<body>
+<script>
+    var person = new Object();
+    person.name = 'jack';
+    console.log(person.name); //jack
+
+    var name = 'jackMa';
+    name.age = 27;
+    console.log(name.age); //undefined
+
+    //复制
+    var num1 = 5;
+    var num2 = num1;
+    num1 = 10;
+    console.log(num1, num2);//10 5
+
+
+    var obj1 = new Object();
+    var obj2 = obj1;
+    obj1.name = 'jackMa';
+    console.log(obj1, obj2);//{name: "jackMa"} {name: "jackMa"}
+    console.log(obj1 === obj2);//true
+
+
+    //传参
+    function addTen(num) {
+        num += 10;
+        return num;
+    }
+
+    var count = 20;
+    var result = addTen(count);
+    console.log(count, result); //20 30
+
+    function setName(obj) {
+        obj.name = 'jackMa';
+
+        //即使函数内部修改了参数的值，但原始的引用仍然保持未变，当在函数内部重写obj时
+        //这个变量引用的就是一个局部对象了。而这个局部对象在函数执行完毕后立即被销毁。
+        obj = new Object();
+        obj.name = 'Greg';
+    }
+
+    var person2 = new Object();
+    person2.name = 'lucy';
+    console.log(person2.name);//lucy
+    setName(person2);
+    console.log(person2.name);  //jackMa
+
+
+</script>
+
+</body>
+</html>
