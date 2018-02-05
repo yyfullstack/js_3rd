@@ -154,6 +154,96 @@
     console.log(values);
 
 
+    //操作方法
+
+    //concat
+    var colors = ['red', 'green', 'blue'];
+    var colors2 = colors.concat('yellow', ['black', 'brown']);
+    console.log(colors2);
+
+    //slice
+    var colors3 = colors2.slice(1);
+    var colors4 = colors2.slice(1, 4);
+    console.log(colors3, colors4);
+
+    //splice
+    //删除第一项
+    var removed = colors4.splice(0, 1);
+    console.log(removed, colors4);
+
+    //从位置1开始插入两项
+    removed = colors4.splice(1, 0, 'orange', 'white');
+    console.log(removed, colors4); //removed 为空数组
+
+    //删除一项，插入两项
+    removed = colors4.splice(1, 1, 'transparent', 'purple');
+    console.log(removed, colors4);
+
+    //位置方法
+    //indexOf, lastIndexOf
+    var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+    console.log(numbers.indexOf(3)) //2
+    console.log(numbers.lastIndexOf(3)) //6
+
+    //后一个参数是查找起点位置的索引
+    console.log(numbers.indexOf(3, 3)) //6
+    console.log(numbers.lastIndexOf(3, 3)) //2
+
+    //查找使用全等操作符
+    var person = {name: 'yc'};
+    var people = [{name: 'yc'}];
+    var otherPeople = [person];
+    console.log(people.indexOf(person)); //-1
+    console.log(otherPeople.indexOf(person)); //0
+
+    //迭代
+
+    //every
+    var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+    var everyResult = numbers.every(function (item, index, array) {
+        return item > 2;
+    });
+    console.log(everyResult); //false
+
+    //some
+    var someResult = numbers.some(function (item, index, array) {
+        return item > 2;
+    });
+    console.log(someResult); //true
+
+    //filter
+    var filterResult = numbers.filter(function (item, index, array) {
+        return item > 2;
+    });
+    console.log(filterResult); //
+
+    //map
+    var mapResult = numbers.map(function (item, index, array) {
+        return item * 2;
+    });
+    console.log(mapResult);
+
+    //forEach，没有返回值
+    numbers.forEach(function (item, index, array) {
+        //执行操作
+        console.log(item, index, array);
+    });
+
+
+    //归并
+    //reduce，从数组的第一项开始，逐个遍历到最后
+    var sum = numbers.reduce(function (prev, cur, index, array) {
+        return prev + cur;
+    });
+    console.log(sum);
+
+    //reduceRight，从数组的最后一项开始，逐个遍历到第一项
+    //方向相反
+    var sum = numbers.reduceRight(function (prev, cur, index, array) {
+        return prev + cur;
+    });
+    console.log(sum);
+
 </script>
 </body>
 </html>

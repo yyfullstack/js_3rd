@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var book = {
+        _year: 2004,
+        edition: 1
+    };
+
+    Object.defineProperty(book, 'year', {
+        get: function () {
+            return this._year;
+        },
+        set: function (newValue) {
+            if (newValue > 2004) {
+                this._year = newValue;
+                this.edition += newValue - 2004;
+            }
+        }
+    });
+
+
+    book.year = 2005;
+    console.log(book)
+
+
+    // var book = {
+    //     _year: 2004,
+    //     edition: 1
+    // };
+    //
+    // // o.__defineGetter__('gimmeFive', function() { return 5; });
+    // book.__defineGetter__('year', function () {
+    //     return this._year;
+    // });
+    // book.__defineSetter__('year', function (newValue) {
+    //     if (newValue > 2004) {
+    //         this._year = newValue;
+    //         this.edition += newValue - 2004;
+    //     }
+    // });
+    // book.year = 2005;
+    // console.log(book.edition);
+
+    //设置多个属性
+    var book = {};
+    Object.defineProperties(book, {
+        _year: {
+            value: 2004
+        },
+
+        edition: {
+            value: 1
+        },
+
+        year: {
+            get: function () {
+                return this._year;
+            },
+
+            set: function (newValue) {
+                if (newValue > 2004) {
+                    this._year = newValue;
+                    this.edition += newValue - 2004;
+                }
+            }
+        }
+    })
+
+    //获取属性的特性
+    var descriptor = Object.getOwnPropertyDescriptor(book, 'year');
+    console.log(descriptor);
+
+    //工厂模式
+    function createPerson(name, age, job) {
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.job = job;
+        o.sayName = function () {
+            alert(this.name);
+        };
+        return o;
+    }
+
+    //构造函数模式
+    function Person(name, age, job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.sayName = function () {
+            alert(this.name);
+        }
+    }
+    //当构造函数使用
+    // var person = new Person('JACK', 29, 'Engineer');
+    // person.sayName();
+
+    //作为普通函数使用
+    // Person('tom', 28, 'doctor');
+    // window.sayName();
+
+    //在另一个对象的作用域中调用
+    // var o = new Object();
+    // Person.call(o, 'lucy', 25, 'actor');
+    // o.sayName();
+
+
+
+
+
+</script>
+</body>
+</html>

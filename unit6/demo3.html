@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //继承
+    // function SuperType() {
+    //     this.property = true;
+    // }
+    //
+    // SuperType.prototype.getSuperValue = function(){
+    //     return this.property;
+    // }
+    //
+    // function SubType() {
+    //     this.subproperty = false;
+    // }
+    //
+    // SubType.prototype = new SuperType();
+    // SubType.prototype.getSubValue = function() {
+    //     return this.subproperty;
+    // };
+    //
+    //
+    // var instance = new SubType();
+    // console.log(instance.getSuperValue());//true
+
+
+    //覆盖父类型的方法
+    // function SuperType() {
+    //     this.property = true;
+    // }
+    //
+    // SuperType.prototype.getSuperValue = function(){
+    //     return this.property;
+    // }
+    //
+    // function SubType() {
+    //     this.subproperty = false;
+    // }
+    //
+    // SubType.prototype = new SuperType();
+    //
+    // //必须在用Super的实例替换原型之后，再定义这两个方法
+    //
+    // SubType.prototype.getSubValue = function() {
+    //     return this.subproperty;
+    // };
+    //
+    // SubType.prototype.getSuperValue = function() {
+    //     return false;
+    // };
+    //
+    // var instance = new SubType();
+    // console.log(instance.getSuperValue());//false
+
+    //原型链的问题, 原型链中包含引用类型，所有实例的指针共享引用类型
+
+    // function SuperType() {
+    //     this.colors = ['red', 'blue', 'green'];
+    // }
+    //
+    // function SubType() {
+    // }
+    //
+    // SubType.prototype = new SuperType();
+    //
+    //
+    // var instance1 = new SubType();
+    // instance1.colors.push('black');
+    // console.log(instance1.colors);
+    //
+    // var instance2 = new SubType();
+    // console.log(instance2.colors);
+
+
+    //借用构造函数
+    // function SuperType() {
+    //     this.colors = ['red', 'blue', 'green'];
+    // }
+    //
+    // function SubType() {
+    //     SuperType.call(this);
+    // }
+    //
+    // var instance1 = new SubType();
+    // instance1.colors.push('black');
+    // console.log(instance1.colors);
+    //
+    // var instance2 = new SubType();
+    // console.log(instance2.colors);
+
+
+    //通用模式
+    // function SuperType(name) {
+    //     this.name = name;
+    //     this.colors = ['red', 'blue', 'green'];
+    // }
+    //
+    // SuperType.prototype.sayName = function () {
+    //     alert(this.name);
+    // }
+    //
+    // function SubType(name, age) {
+    //     SuperType.call(this, name);
+    //     this.age = age;
+    // }
+    //
+    // SubType.prototype = new SuperType();
+    // SubType.prototype.constructor = SubType;
+    //
+    // SubType.prototype.sayAge = function() {
+    //     alert(this.age);
+    // };
+    //
+    // var instance1 = new SubType('Nicholas', 29);
+    // instance1.colors.push('black');
+    // console.log(instance1.colors);
+    // instance1.sayName();
+    // instance1.sayAge();
+    //
+    //
+    // var instance2 = new SubType('Greg', 27);
+    // console.log(instance2.colors);
+    // instance2.sayName();
+    // instance2.sayAge();
+
+
+    // function object(o) {
+    //     function F() {
+    //     };
+    //     F.prototype = o;
+    //     return new F();
+    // }
+    //
+    // var person = {
+    //     name: 'Nicholas',
+    //     friends: ['Shelby', 'Court', 'Van']
+    // };
+    //
+    // var anotherPerson = object(person);
+    // anotherPerson.name = 'Greg';
+    // anotherPerson.friends.push('Rob');
+    //
+    // var yetAnotherPerson = object(person);
+    // yetAnotherPerson.name = 'Linda';
+    // yetAnotherPerson.friends.push('Barbie');
+    //
+    // console.log(person.friends);
+
+
+    var person = {
+        name: 'Nicholas',
+        friends: ['Shelby', 'Court', 'Van']
+    };
+
+    var anotherPerson = Object.create(person);
+    anotherPerson.name = 'Greg';
+    anotherPerson.friends.push('Rob');
+
+    var yetAnotherPerson = Object.create(person);
+    yetAnotherPerson.name = 'Linda';
+    yetAnotherPerson.friends.push('Barbie');
+
+    console.log(person.friends);
+
+</script>
+</body>
+</html>

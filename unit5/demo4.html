@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function createComparisonFunction(propertyName) {
+        return function (obj1, obj2) {
+            var value1 = obj1[propertyName];
+            var value2 = obj2[propertyName];
+
+            if (value1 < value2) {
+                return -1;
+            } else if (value1 > value2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        };
+    }
+
+    var data = [{name: 'jack', age: 23}, {name: 'lucy', age: 33}, {name: 'tom', age: 26}, {name: 'nick', age: 21}];
+    data.sort(createComparisonFunction('name'));
+    console.log(data);
+
+    data.sort(createComparisonFunction('age'));
+    console.log(data);
+
+
+    function factorial(num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * factorial(num - 1);
+        }
+    }
+
+    //解除函数体内的代码和函数名的耦合状态
+    function factorial(num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * arguments.callee(num - 1);
+        }
+    }
+
+
+    function sum(num1, num2) {
+        return num1 + num2;
+    }
+
+    function callSum1(num1, num2) {
+        console.log(this);
+        return sum.apply(this, arguments);
+    }
+
+    function callSum2(num1, num2) {
+        return sum.apply(this, [num1, num2]);
+    }
+
+    console.log(callSum1(10, 20));
+
+
+    var num = 1231.23131;
+    console.log(num.toFixed(3));
+    console.log(num.toExponential(3));
+    console.log(num.toPrecision(3));
+
+    var str = 'hello world';
+    console.log(str.slice(3));
+    console.log(str.substring(3));
+    console.log(str.substr(3));
+    //第二个参数表示结束位置
+    console.log(str.slice(3, 7));
+    console.log(str.substring(3, 7));
+
+    //第二个参数表示返回字符个数
+    console.log(str.substr(3, 7));
+
+    //slice()和substr()传递一个负值，负值会被转换为字符串长度+(负值) ， 若结果小于0，则视为0。
+    console.log(str.slice(-3));
+    console.log(str.substr(-3));
+
+    console.log(str.slice(-13));
+    console.log(str.substr(-13));
+
+    //substring() 方法会把所有负值参数都转换为 0
+    console.log(str.substring(-3));
+
+    //第二个参数为负值，负值会被转换为字符串长度+(负值) ， 若结果小于0，则视为0
+    console.log(str.slice(3, -4));
+    console.log(str.slice(3, 11 + (-4)));
+
+
+    //第二个参数为负值，负值会被转换为0
+    console.log(str.substr(3, -4));
+    console.log(str.substr(3, 0));
+
+    //第二个参数为负值，负值会被转换为0
+    //这个方法会将较小的数作为开始位置，将较大的数作为结束位置
+    console.log(str.substring(3, -4));
+    console.log(str.substring(3, 0));
+    console.log(str.substring(0, 3));
+
+
+    console.log(str.indexOf('o')); //4
+    console.log(str.lastIndexOf('o')); //7
+
+    console.log(str.indexOf('o', 6)); //7
+    console.log(str.lastIndexOf('o', 6)); //4
+
+
+    var str1 = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
+    var result = [];
+    var pos = str1.indexOf('e');
+    while (pos > -1) {
+        result.push(pos);
+        pos = str1.indexOf('e', pos + 1);
+    }
+    console.log(result);
+
+
+    var text = 'cat, bat, sat, fat';
+    var pattern = /.at/;
+    //var matches = text.match(pattern);
+    //console.log(matches);
+    //console.dir(pattern);
+
+
+    var matches2 = pattern.exec(text);
+    console.log(matches2);
+    console.dir(pattern);
+
+    //“at”在字符串中第一次出现的位置
+    var pos = text.search(/at/);
+    console.log(pos);
+    //search() 方法始终是从字符串开头向后查找模式
+    var pos2 = text.search(/at/g);
+    console.log(pos2);
+
+    //第一个参数是字符串，那么只会替换第一个子字符串
+    var result = text.replace('at', 'ond');
+    console.log(result);
+
+
+    result = text.replace(/at/g, 'ond');
+    console.log(result);
+
+
+    result = text.replace(/(.at)/g, 'word($1)');
+    console.log(result);
+
+
+    function htmlEscape(text) {
+        return text.replace(/[<>"&]/g, function (match, pos, originalText) {
+            switch (match) {
+                case '<':
+                    return '&lt;';
+                case '>':
+                    return '&gt;';
+                case '&':
+                    return '&amp;';
+                case '"':
+                    return '&quot;';
+            }
+        })
+    }
+
+    console.log(global);
+
+</script>
+</body>
+</html>

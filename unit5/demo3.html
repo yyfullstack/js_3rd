@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var re = null, i;
+    for (i = 0; i < 10; i++) {
+        re = /cat/g;
+        //alert(re.test('catastrophe'));
+    }
+
+
+    var text = 'cat, bat, sat, fat';
+    //第一个模式pattern1不是全局模式，因此每次调用exec()返回的都是第一个匹配项
+    var pattern1 = /.at/;
+
+    var matches = pattern1.exec(text);
+    console.log(matches, pattern1.lastIndex);
+
+    matches = pattern1.exec(text);
+    console.log(matches, pattern1.lastIndex);
+
+
+    //第二个模式pattern2是全局模式，因此每次调用exec()都返回字符串中的下一个匹配项，
+    // 直到搜索到字符串末尾为止。 此外，还应该注意模式的lastIndex属性的变化情况。
+    // 在全局匹配模式下， lastIndex的值在每次调用exec()后都会增加，而在非全局模式下则始终保持不变
+
+    var pattern2 = /.at/g;
+
+    var matches = pattern2.exec(text);
+    console.log(matches, pattern2.lastIndex);
+
+    matches = pattern2.exec(text);
+    console.log(matches, pattern2.lastIndex);
+
+
+    var text = 'this has been a short summer';
+    var pattern = /(.)hort/g;
+
+    // if (pattern.test(text)) {
+    //     console.log(RegExp.input)
+    //     console.log(RegExp.leftContext)
+    //     console.log(RegExp.rightContext)
+    //     console.log(RegExp.lastMatch)
+    //     console.log(RegExp.lastParen)
+    //     console.log(RegExp.multiline);
+    // }
+
+    if (pattern.test(text)) {
+        console.log(RegExp['$_'])
+        console.log(RegExp['$`'])
+        console.log(RegExp["$'"]);
+        console.log(RegExp['$&'])
+        console.log(RegExp['$+'])
+        console.log(RegExp['$*'])
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // function Person() {
+    //
+    // }
+    //
+    // console.log(Person.prototype)
+    //
+    // Person.prototype.name = 'Nicholas';
+    // Person.prototype.age = 29;
+    // Person.prototype.job = 'Engineer';
+    // Person.prototype.sayName = function() {
+    //     alert(this.name);
+    // };
+    //
+    // var person1 = new Person();
+    // var person2 = new Person();
+    // person1.name = 'Greg';
+    // //来自实例
+    // alert(person1.name);
+    // //来自原型
+    // alert(person2.name);
+    //
+    // //删除实例属性，重新访问原型
+    // delete person1.name;
+    // alert(person1.name);
+
+
+    // function Person() {
+    //
+    // }
+    //
+    // console.log(Person.prototype)
+    //
+    // Person.prototype.name = 'Nicholas';
+    // Person.prototype.age = 29;
+    // Person.prototype.job = 'Engineer';
+    // Person.prototype.sayName = function() {
+    //     alert(this.name);
+    // };
+    //
+    // var keys = Object.keys(Person.prototype);
+    // console.log(keys);
+    //
+    // var p1 = new Person();
+    // console.log(Object.keys(p1));
+    //
+    // console.log(Object.getOwnPropertyNames(Person.prototype));
+
+
+    // function Person() {
+    //
+    // }
+    // console.log(Person.prototype)
+    // Person.prototype = {
+    //     name: 'Nicholas',
+    //     age: 29,
+    //     job: 'Engineer',
+    //     sayName: function () {
+    //         alert(this.name);
+    //     }
+    // };
+    // //constructor属性变成了新对象的constructor属性（指向Object构造函数）
+    // //不在指向Person函数。
+    // console.log(Person.prototype)
+    //
+    // var p1 = new Person();
+    // console.log(p1 instanceof Object);
+    // console.log(p1 instanceof Person);
+    //
+    // console.log(p1.constructor == Person); //false
+    // console.log(p1.constructor == Object); //true
+
+
+    // function Person() {
+    //
+    // }
+    //
+    // console.log(Person.prototype)
+    // Person.prototype = {
+    //     name: 'Nicholas',
+    //     age: 29,
+    //     job: 'Engineer',
+    //     sayName: function () {
+    //         alert(this.name);
+    //     }
+    // };
+    //
+    // //重设构造函数，
+    // Object.defineProperty(Person.prototype, 'constructor',{
+    //     enumerable:false,
+    //     value:Person
+    // });
+
+    //动态性
+    // function Person() {
+    //
+    // }
+    // var p1 = new Person();
+    // Person.prototype.sayHi = function() {
+    //     alert('hi');
+    // };
+    //
+    // p1.sayHi()
+
+    // function Person() {
+    //
+    // }
+    // var p2 = new Person();
+    //
+    // Person.prototype = {
+    //     constructor:Person,
+    //     name:'jack',
+    //     age:29,
+    //     job:'Software',
+    //     sayName:function(){
+    //         alert(this.name);
+    //     }
+    // }
+    // //报错了，
+    // p2.sayName();
+
+    //扩展原型
+    // String.prototype.begin = function(text) {
+    //     return this.indexOf(text) == 0;
+    // };
+    // var msg = 'Hello world!';
+    // alert(msg.begin('hello'));
+
+    //原型对象的问题
+    // function Person() {
+    //
+    // }
+    //
+    // var p2 = new Person();
+    //
+    // Person.prototype = {
+    //     constructor: Person,
+    //     name: 'jack',
+    //     age: 29,
+    //     job: 'Software',
+    //     friends: ['lucy', 'tom'],
+    //     sayName: function () {
+    //         alert(this.name);
+    //     }
+    // };
+    //
+    // var p1 = new Person();
+    // var p2 = new Person();
+    // p1.friends.push('Van');
+    // console.log(p1.friends);
+    // console.log(p2.friends);
+    // console.log(p1.friends === p2.friends);
+
+
+    //混合模式
+    // function Person(name, age, job) {
+    //     this.name = name;
+    //     this.age = age;
+    //     this.job = job;
+    //     this.friends = ['jerry', 'tom'];
+    // }
+    // Person.prototype = {
+    //     constructor:Person,
+    //     sayName:function() {
+    //         alert(this.name)
+    //     }
+    // }
+    //
+    // var p1 = new Person('jack', 28, 'engineer');
+    // var p2 = new Person('tom', 27, 'doctor');
+    // p1.friends.push('Van');
+    // console.log(p1.friends);
+    // console.log(p2.friends);
+    // console.log(p1.friends === p2.friends);
+
+    //动态原型模式
+    // function Person(name, age, job) {
+    //     this.name = name;
+    //     this.age = age;
+    //     this.job = job;
+    //
+    //     if (typeof this.sayName != 'function') {
+    //         Person.prototype.sayName = function () {
+    //             alert(this.name)
+    //         }
+    //     }
+    // }
+    //
+    // var p1 =  new Person('jack', 28, 'engineer');
+    // console.log(p1.sayName());
+
+
+    //工厂模式
+    // function createPerson(name, age, job) {
+    //     var o = new Object();
+    //     o.name = name;
+    //     o.age = age;
+    //     o.job = job;
+    //     o.sayName = function () {
+    //         alert(this.name);
+    //     };
+    //     return o;
+    // }
+    //
+    // var p1 = createPerson('jack', 28, 'engineer');
+    // p1.sayName();
+
+    //寄生构造函数模式
+    // function Person(name, age, job) {
+    //     var o = new Object();
+    //     o.name = name;
+    //     o.age = age;
+    //     o.job = job;
+    //     o.sayName = function () {
+    //         alert(this.name);
+    //     };
+    //     return o;
+    // }
+    //
+    // var p1 = new Person('jack', 28, 'engineer');
+    // console.log(p1.sayName());
+
+
+    //稳妥构造函数
+    function Person(name, age, job) {
+        var o = new Object();
+        //可以在这里定义私有变量和函数
+
+        o.sayName = function () {
+            alert(name);
+        };
+        return o;
+    }
+
+    var p1 = Person('jack', 28, 'engineer');
+    console.log(p1.sayName());
+</script>
+</body>
+</html>
