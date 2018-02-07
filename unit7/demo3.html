@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //构造函数中定义特权方法
+    function MyObject() {
+        var privateVariable = 10;
+
+        function privateFunction() {
+            return false;
+        }
+
+        //特权方法
+        this.publicMethod = function () {
+            privateVariable++;
+            return privateFunction();
+        }
+    }
+
+    //静态私有变量
+    (function () {
+        //私有变量和私有函数
+        var privateVariable = 10;
+
+        function privateFunction() {
+            return false;
+        }
+
+        //它是函数表达式
+        //没有使用var，创建了全局变量
+        //构造函数
+        MyObject = function () {
+
+        };
+        //公有/特权方法
+        MyObject.prototype.publicMethod = function () {
+            privateVariable++;
+            return privateFunction();
+        };
+    })();
+
+    //模块模式
+    //单例模式
+    var singleton = function () {
+        var privateVariable = 10;
+
+        function privateFunction() {
+            return false;
+        }
+
+        return {
+            publicProperty: true,
+            publicMethod: function () {
+                privateVariable++;
+                return privateFunction();
+            }
+        }
+    }
+
+
+    var application = function () {
+        var components = new Array();
+
+        components.push(new BaseComponent());
+
+        return {
+            getComponetCount: function () {
+                return components.length;
+            },
+
+            registerComponent: function (component) {
+                if (typeof component == 'object') {
+                    components.push(component);
+                }
+            }
+        }
+    }
+
+    //增强的模块模式
+    //单例必须是某种类型的实例
+    var singleton = function () {
+        var privateVariable = 10;
+
+        function privateFunction() {
+            return false;
+        }
+
+        var object = new CustomType();
+
+        object.publicMethod = function () {
+            privateVariable++;
+            return privateFunction();
+        };
+        return object;
+    }
+
+    var application = function () {
+        var components = [];
+
+        components.push(new BaseComponent());
+
+        var app = new BaseComponent();
+
+        app.getComponetCount = function () {
+            return components.length;
+        };
+
+        app.registerComponent = function (component) {
+            if (typeof component == 'object') {
+                components.push(component);
+            }
+        };
+
+        return app;
+    }
+
+
+</script>
+</body>
+</html>

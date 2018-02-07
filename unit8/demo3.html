@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getQueryStringAgrs() {
+        var qs = (location.search.length > 0 ? location.search.substring(1) : ''),
+            args = {},
+            items = qs.length ? qs.split('&') : [],
+            item = null,
+            name = null,
+            value = null,
+            i = 0,
+            len = items.length;
+        for (i = 0; i < len; i++) {
+            item = items[i].split('=');
+            name = decodeURIComponent(item[0]);
+            value = decodeURIComponent(item[1]);
+            if (name.length) {
+                args[name] = value;
+            }
+        }
+        return args;
+    }
+    //改变浏览器位置
+    // location.assign('http://www.baidu.com');
+
+    //window.location = 'http://www.taobao.com'
+
+    // location.href = 'http://www.sina.com'
+
+
+    //假设初始 URL 为 http://www.wrox.com/WileyCDA/
+    //将 URL 修改为"http://www.wrox.com/WileyCDA/#section1"
+    location.hash = "#section1";
+    //将 URL 修改为"http://www.wrox.com/WileyCDA/?q=javascript"
+    location.search = "?q=javascript";
+    //将 URL 修改为"http://www.yahoo.com/WileyCDA/"
+    location.hostname = "www.yahoo.com";
+    //将 URL 修改为"http://www.yahoo.com/mydir/"
+    location.pathname = "mydir";
+    //将 URL 修改为"http://www.yahoo.com:8080/WileyCDA/"
+
+
+    //无法返回，后退按钮处于禁用状态
+    // setTimeout(function () {
+    //     location.replace('http://www.qcjjchina.com');
+    // }, 1000);
+
+</script>
+</body>
+</html>
