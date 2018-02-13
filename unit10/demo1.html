@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom文档</title>
+    <style>
+        div {
+            width: 200px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div > p, div li {
+            margin: 0;
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <p>previous</p>
+    <ul>
+        <li>item-1</li>
+        <li>item-2</li>
+        <li>item-3</li>
+        <li>item-4</li>
+        <li>item-5</li>
+
+    </ul>
+    <p>next</p>
+
+    <div>
+        <img src="" alt="" name="item-1">
+        <img src="" alt="" name="item-2">
+        <img src="" alt="" name="item-3">
+    </div>
+
+    <div>
+        <label>radioItem1<input type="radio" name="love"></label>
+        <label>radioItem2<input type="radio" name="love"></label>
+        <label>radioItem3<input type="radio" name="love"></label>
+    </div>
+</div>
+
+
+<script>
+    function converToArray(nodes) {
+        var array = null;
+        try {
+            array = Array.prototype.slice.call(nodes, 0);
+        } catch (ex) {
+            array = [];
+            for (var i = 0, len = nodes.length; i < len; i++) {
+                array.push(nodes[i]);
+            }
+        }
+        return array;
+    }
+
+
+    //appendChild
+
+    // var newNode = document.createElement('li')
+    // newNode.innerHTML = 'new node';
+    // var someNode = document.querySelector('ul');
+    // var returnNode = someNode.appendChild(newNode);
+    // console.log(returnNode == newNode);
+    // console.log(someNode.lastChild == newNode);
+
+    //insertBefore
+
+    // var newNode = document.createElement('li')
+    // newNode.innerHTML = 'new node';
+    // var someNode = document.querySelector('ul');
+    //
+    //
+    // //插入后成为最后一个子节点
+    // //var returnNode = someNode.insertBefore(newNode, null);
+    // //console.log(returnNode == someNode.lastChild);
+    //
+    // //插入后成为第一个子节点
+    // //var returnNode = someNode.insertBefore(newNode, someNode.firstChild);
+    // //console.log(returnNode == someNode.firstChild);
+    //
+    // var returnNode = someNode.insertBefore(newNode, someNode.lastChild);
+    // console.log(returnNode == someNode.firstChild);
+
+    //replaceChild
+
+    // var newNode = document.createElement('li')
+    // newNode.innerHTML = 'new node';
+    // var someNode = document.querySelector('ul');
+    // var returnNode = someNode.replaceChild(newNode, someNode.firstChild);
+    // console.log(returnNode);
+    //
+    // returnNode = someNode.replaceChild(newNode, someNode.lastChild);
+    // console.log(returnNode);
+
+    //removeChild
+
+    // var someNode = document.querySelector('ul');
+    // var returnNode = someNode.removeChild(someNode.firstChild);
+    // console.log(returnNode);
+    //
+    // returnNode = someNode.removeChild(someNode.lastChild);
+    // console.log(returnNode);
+
+
+    //cloneNode
+
+    var myList = document.querySelector('ul');
+    var deepList = myList.cloneNode(true);
+    console.log(deepList.childNodes.length);
+
+    var shallowList = myList.cloneNode(false);
+    console.log(shallowList.childNodes.length);
+
+
+    //DOM 节点
+    var html = document.documentElement;
+    console.log(html);
+
+    //文档标题， 可以设置
+    console.log(document.title);
+    //取得完整的URL
+    console.log(document.URL);
+    //取得域名， 可以设置
+    console.log(document.domain);
+    //取得来源页面的URL
+    console.log(document.referrer);
+
+
+    var list = document.getElementsByTagName('li');
+    console.log(list.length);
+    console.log(list[0].innerHTML);
+    console.log(list.item(0).innerHTML);
+
+    var images = document.getElementsByTagName('img');
+    console.log(images.length);
+    console.log(images.namedItem('item-2'));
+    console.log(images['item-3']);
+
+    //getElementsByName是HTMLDocument类型才有的方法
+    var loves = document.getElementsByName('love');
+    console.log(loves);
+
+
+    var hasXmlDom = document.implementation.hasFeature('XML', '1.0');
+    console.log(hasXmlDom)
+
+
+</script>
+</body>
+</html>
